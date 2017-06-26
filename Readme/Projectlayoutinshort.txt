@@ -1,0 +1,22 @@
+This is the detailed explanation of the FeedProject
+1.To get the RSS Feed from CNN, I have used an API (RSS2JSON -https://rss2json.com/) 
+2. The data sent by the above API is in json, so to deserialize the json, I have generated a model class with the JSONdata
+called (RSSContentdata.cs).
+3. Ajax is used to get the data from the API and sending the data to the webservice for parsing (RSScontent.cs).
+4. The webservice is used to deserialize the json and generate a datatable.
+5. The datatable is inserted in the db using the Dbconfig class methods.
+6. All the Database methods are inside a single class which is inside a folder called dao.
+7. Once the feeds are saved in the DB, the user can then click on the display feed button to show the current feeds for today.
+For this project - I have only used the feeds for the specific day the user will be using the application.
+8. The feeds are displayed inside a simple <div> containers and the links are not activated to avoid opening multiple tabs 
+in the browser which can be a bit of nuisance for testing user interactions with a post and updating the most viewed posts.
+9. A timer is run in the background which runs after every specific time intervals and the timer_tick calls the gridupdate()
+which shows the feeds that have been most viewed followed by the others in descending order.
+10. The application is real time and the gridview is updated with the feeds by most user interactions.
+
+Current constraints-
+1. The html view can be improved significantly.
+2. Websockets can be implemented to make it more real time.
+3. The architecture can be improved significantly.
+4. Currently, the feed can be save for a day only once in the db. So, no matter how many times a user clicks on the getfeedfortoday button, it will not hamper with the db because a stored procedure handles the appropriate logic.
+
